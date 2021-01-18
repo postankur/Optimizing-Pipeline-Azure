@@ -10,8 +10,8 @@ This model is then compared to an Azure AutoML run.
 This dataset contains marketing campaign data for a financial institution. The goal is to predict whether they will subscribe for term deposit. The data contains age, job, marital status, education, housing loan, personal loan, and poutcome which can be used train the model.
 
 **In 1-2 sentences, explain the solution: e.g. "The best performing model was a ..."**
-The best performing model was the model with ID HD_fda34223-a94c-456b-8bf7-52e84aa1d17e_14 that was created using hyperdrive parameters and sScikit-learn pipeline. It had an accuracy of **0.91760**. 
-The **AutoML model** on the other hand had an accuracy of **0.91618** and the algorithm used was VotingEnsemble.. Th runid was AutoML_ee4a685e-34f2-4031-a4f9-fe96ff33836c_13.
+The best performing model was the model with ID HD_22dae0c9-2f58-4634-a8f1-3a664aa97c93_10 that was created using hyperdrive parameters and sScikit-learn pipeline. It had an accuracy of 0.9080424886191198. 
+The AutoML model on the other hand had an accuracy of 0.9172617023688088 and the algorithm used was VotingEnsemble.. The runid was AutoML_27526f0b-7b45-40f0-a412-281414049f7b_14.
 
 
 ## Scikit-learn Pipeline
@@ -74,16 +74,18 @@ One cross validation can cause an overfit hence it was set to 3. An average of t
 Below are the metrics for both runs.
 
 HyperDrive Model
-id: HD_fda34223-a94c-456b-8bf7-52e84aa1d17e_14
-Accuracy: 0.9176024279210926
+id: HD_22dae0c9-2f58-4634-a8f1-3a664aa97c93_10
+Accuracy: 0.9080424886191198
+Max iterations:200
+Regularization Strength:1.5
 
 AutoML Model
-id: AutoML_ee4a685e-34f2-4031-a4f9-fe96ff33836c_13
-Accuracy: 0.916176024279211
-AUC_weighted: 0.9469939634729121
+id: AutoML_27526f0b-7b45-40f0-a412-281414049f7b_14
+Accuracy: 0.9172617023688088
+AUC_weighted: 0.9465394508134525
 Algortithm: VotingEnsemble
 
-The difference in accuracy between the two models is rather trivial and although the HyperDrive model performed better in terms of accuracy, I am of the opinion that the AutoML model is actually better because of its **AUC_weighted** metric which equals to **0.9469939634729121** and is more fit for the highly imbalanced data that we have here. If we were given more time to run the AutoML, the resulting model would certainly be much more better. And the best thing is that AutoML would make all the necessary calculations, trainings, validations, etc. without the need for us to do anything. This is the difference with the Scikit-learn Logistic Regression pipeline, in which we have to make any adjustments, changes, etc. by ourselves and come to a final model after many trials & errors. 
+The difference in accuracy between the two models is not very rastic but AutoML model seems to be performing better than the HyperDrive model. AutoML is a better candidate here as most of teh training validations and and necessary calculations are being done by itself and we don't need to make any adjustments. Hyperdrive parameters will need repetitive adjustments and be re-ran until we get the best running model of various experiments.
 
 ## Future work
 **What are some areas of improvement for future experiments? Why might these improvements help the model?**
@@ -93,3 +95,4 @@ Cross-validation is the process of taking many subsets of the full training data
 ## Proof of cluster clean up
 **If you did not delete your compute cluster in the code, please complete this section. Otherwise, delete this section.**
 **Image of cluster marked for deletion**
+compute_target.delete()
