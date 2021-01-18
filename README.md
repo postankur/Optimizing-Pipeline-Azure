@@ -105,31 +105,51 @@ Automated machine learning picks an algorithm and hyperparameters and generates 
 VotingEnsemble combines the predictions from multiple learnings. It works by creating two or more standalone models from the training dataset. The voting classifier wraps the models and averages the predictions of the sub-models when asked to make predictions for new data.
 **End - Update based on review 1/18/2021**
 
-**Begin - Update based on review 1/18/2021 Round 2 Set 1**
+**Begin - Update based on review 1/18/2021 Round 2 Set 2**
 **AutoML Model performance**
+Accuracy is the ratio of predictions that exactly match the true class labels. AutoMl model was able to achieve an accuracy of 0.91
+Accuracy: 0.9172617023688088 
+AUC_weighted: 0.9465394508134525
+
+As shown in the chart the weighted accuracy of the model is not close to the ideal score. This means the model needs more training and tweaking for it to perform better.
+AUC_weighted: 0.9465394508134525
 ![ROC Curve](ROC_Curve.png?raw=true "ROC Curve")
+
+A more acceptable model will have less number of false predictions. The aount of false predictions are 1278 and 914 which is almost 10% of the training data. The model needs to be in such a way that the number of false positives should be kept at minimum.
 ![Confusion Matrix](Confusion_Matrix.png?raw=true "Confusion Matrix")
+
+The cumulative gains curve plots the percent of positive samples correctly classified as a function of the percent of samples considered where we consider samples in the order of predicted probability.
 ![Cumulative Curve](Cumulative_Curve.png?raw=true "Cumulative Curve")
-'AUC_macro': 0.9465394508134525,
-'precision_score_weighted': 0.9125414684985289,
-'weighted_accuracy': 0.9561678575520739,
-'precision_score_macro': 0.7987069765267091,
-'precision_score_micro': 0.9172617023688088,
-'average_precision_score_micro': 0.9811384745525,
-'balanced_accuracy': 0.7603071146063195,
-'AUC_micro': 0.9803563979199489,
-'average_precision_score_weighted': 0.9541590738469147,
-'log_loss': 0.1947471160178461,
-'norm_macro_recall': 0.5206142292126388,
-'f1_score_macro': 0.7776140086133401,
-'AUC_weighted': 0.9465394508134525,
-'f1_score_micro': 0.9172617023688088,
-'matthews_correlation': 0.5576695325848257,
-'f1_score_weighted': 0.9144187410523813,
-'accuracy': 0.9172617023688088,
-'confusion_matrix': 'aml://artifactId/ExperimentRun/dcid.AutoML_27526f0b-7b45-40f0-a412-281414049f7b_14/confusion_matrix',
-'accuracy_table': 'aml://artifactId/ExperimentRun/dcid.AutoML_27526f0b-7b45-40f0-a412-281414049f7b_14/accuracy_table'}
- **End - Update based on review 1/18/2021 Round 2 Set 1**
+
+Recall is the ability of a model to detect all positive samples and precision is the ability of a model to avoid labeling negative samples as positive. As displayed below the model does not 
+precision_score_weighted: 0.9125414684985289
+![Precision recall Curve](precisionrecall.png.png?raw=true "Precision recall Curve")
+
+Balanced accuracy is the arithmetic mean of recall for each class. The balanced_accuracy: 0.7603071146063195 which is not closer to 1
+balanced_accuracy: 0.7603071146063195,
+Below are the numbers collected from the model:
+AUC_macro: 0.9465394508134525,
+recall_score_weighted: 0.9172617023688088,
+average_precision_score_macro: 0.8193072002579888,
+precision_score_weighted: 0.9125414684985289,
+weighted_accuracy: 0.9561678575520739,
+precision_score_macro: 0.7987069765267091,
+precision_score_micro: 0.9172617023688088,
+average_precision_score_micro: 0.9811384745525,
+balanced_accuracy: 0.7603071146063195,
+recall_score_macro: 0.7603071146063195,
+AUC_micro: 0.9803563979199489,
+recall_score_micro: 0.9172617023688088,
+average_precision_score_weighted: 0.9541590738469147,
+log_loss: 0.1947471160178461,
+norm_macro_recall: 0.5206142292126388,
+f1_score_macro: 0.7776140086133401,
+AUC_weighted: 0.9465394508134525,
+f1_score_micro: 0.9172617023688088,
+matthews_correlation: 0.5576695325848257,
+f1_score_weighted: 0.9144187410523813,
+accuracy: 0.9172617023688088
+ **End - Update based on review 1/18/2021 Round 2 Set 2**
 
 ## Future work
 **What are some areas of improvement for future experiments? Why might these improvements help the model?**
