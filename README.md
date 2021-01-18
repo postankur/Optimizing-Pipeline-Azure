@@ -45,6 +45,8 @@ hyperdrive_config = HyperDriveConfig(run_config=src,
     max_total_runs=100,
     max_concurrent_runs=4)
 
+
+
 **Classification Algorithm:**
 Since we are trying to determine if teh individual will subscribe for short term deposit, i.e. binary outcome, logistic regression is being used as teh classification algorithm.
 
@@ -64,9 +66,19 @@ automl_config = AutoMLConfig(
     n_cross_validations=3
 )
 
+**Begin - Update based on review 1/18/2021 Round 2 Set 1**
+**experiment_timeout_minutes=20**
 The experiment will continue to run for 20 minutes and exit. Given teh amount of data 20 minute should be more than enough to generate a model.
+
+**task=classification**
+This defines the experiment type which in this case is classification(logistic regression).
+
+**primary_metric="accuracy",**
 The primary metric is set as accuracy.
+
+**n_cross_validations=3**
 One cross validation can cause an overfit hence it was set to 3. An average of the 3 validation metrics will be used.
+**End - Update based on review 1/18/2021 Round 2 Set 1**
 
 ## Pipeline comparison
 **Compare the two models and their performance. What are the differences in accuracy? In architecture? If there was a difference, why do you think there was one?**
@@ -82,6 +94,7 @@ AutoML Model
 id: AutoML_27526f0b-7b45-40f0-a412-281414049f7b_14
 Accuracy: 0.9172617023688088
 AUC_weighted: 0.9465394508134525
+precision_score_weighted: 0.9125414684985289
 Algortithm: VotingEnsemble
 
 The difference in accuracy between the two models is not very drastic but AutoML model seems to be performing better than the HyperDrive model. AutoML is a better candidate here as most of teh training validations and and necessary calculations are being done by itself and we don't need to make any adjustments. Hyperdrive parameters will need repetitive adjustments and be re-ran until we get the best running model of various experiments.
@@ -91,6 +104,32 @@ Automated machine learning picks an algorithm and hyperparameters and generates 
 
 VotingEnsemble combines the predictions from multiple learnings. It works by creating two or more standalone models from the training dataset. The voting classifier wraps the models and averages the predictions of the sub-models when asked to make predictions for new data.
 **End - Update based on review 1/18/2021**
+
+**Begin - Update based on review 1/18/2021 Round 2 Set 1**
+**AutoML Model performance**
+![ROC Curve](ROC_Curve.png?raw=true "ROC Curve")
+![Confusion Matrix](Confusion_Matrix.png?raw=true "Confusion Matrix")
+![Cumulative Curve](Cumulative_Curve.png?raw=true "Cumulative Curve")
+'AUC_macro': 0.9465394508134525,
+'precision_score_weighted': 0.9125414684985289,
+'weighted_accuracy': 0.9561678575520739,
+'precision_score_macro': 0.7987069765267091,
+'precision_score_micro': 0.9172617023688088,
+'average_precision_score_micro': 0.9811384745525,
+'balanced_accuracy': 0.7603071146063195,
+'AUC_micro': 0.9803563979199489,
+'average_precision_score_weighted': 0.9541590738469147,
+'log_loss': 0.1947471160178461,
+'norm_macro_recall': 0.5206142292126388,
+'f1_score_macro': 0.7776140086133401,
+'AUC_weighted': 0.9465394508134525,
+'f1_score_micro': 0.9172617023688088,
+'matthews_correlation': 0.5576695325848257,
+'f1_score_weighted': 0.9144187410523813,
+'accuracy': 0.9172617023688088,
+'confusion_matrix': 'aml://artifactId/ExperimentRun/dcid.AutoML_27526f0b-7b45-40f0-a412-281414049f7b_14/confusion_matrix',
+'accuracy_table': 'aml://artifactId/ExperimentRun/dcid.AutoML_27526f0b-7b45-40f0-a412-281414049f7b_14/accuracy_table'}
+ **End - Update based on review 1/18/2021 Round 2 Set 1**
 
 ## Future work
 **What are some areas of improvement for future experiments? Why might these improvements help the model?**
