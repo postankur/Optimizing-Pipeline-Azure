@@ -86,6 +86,12 @@ Algortithm: VotingEnsemble
 
 The difference in accuracy between the two models is not very drastic but AutoML model seems to be performing better than the HyperDrive model. AutoML is a better candidate here as most of teh training validations and and necessary calculations are being done by itself and we don't need to make any adjustments. Hyperdrive parameters will need repetitive adjustments and be re-ran until we get the best running model of various experiments.
 
+**Begin - Update based on review 1/18/2021**
+Automated machine learning picks an algorithm and hyperparameters and generates a model ready for deployment. Automl applies bayesian sampling for hyperparameters optimization.
+
+VotingEnsemble combines the predictions from multiple learnings. It works by creating two or more standalone models from the training dataset. The voting classifier wraps the models and averages the predictions of the sub-models when asked to make predictions for new data.
+**End - Update based on review 1/18/2021**
+
 ## Future work
 **What are some areas of improvement for future experiments? Why might these improvements help the model?**
 Cross-validation is the process of taking many subsets of the full training data and training a model on each subset. Higher accuracy can be achieved by higher number in n_cross_validations. I would also increase the experiment_timeout_minutes to help with increased computation required.
